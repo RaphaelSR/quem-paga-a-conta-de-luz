@@ -23,6 +23,10 @@ function updateScroll(){
 }
 addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateScroll);}},{passive:true});
 updateScroll();
+document.querySelectorAll('[data-topic]').forEach(button=>button.addEventListener('click',()=>{
+ const topic=button.dataset.topic;let count=0;document.querySelectorAll('[data-bill-topic]').forEach(card=>{card.hidden=topic!=='all'&&card.dataset.billTopic!==topic;if(!card.hidden)count++;});
+ document.querySelectorAll('[data-topic]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));$('#bill-count').textContent=`${count} propostas neste filtro`;
+}));
 $('#share').addEventListener('click',async()=>{
  const payload={title:document.title,text:'Quem paga a conta de luz? Um dossiê com dados da ANEEL, EPE e IBGE.',url:location.href.split('#')[0]};
  try{if(navigator.share){await navigator.share(payload);}else{await navigator.clipboard.writeText(payload.url);$('#share-status').textContent='Link copiado.';}}
@@ -48,7 +52,7 @@ async function boot(){
  function calc(){
   const consumption=Number($('#consumption').value),a=rates.find(r=>r.name===$('#calc-a').value),b=rates.find(r=>r.name===$('#calc-b').value);
   $('#consumption-value').textContent=`${fmt(consumption)} kWh`;
-  $('#calc-results').innerHTML=[a,b].map(r=>`<div class="calc-result"><div><span>${esc(r.name)}</span><strong>${money(r.rate*consumption)}</strong></div><div class="calc-stack" aria-hidden="true"><i style="width:${r.te/r.rate*100}%"></i><i style="width:${r.tusd/r.rate*100}%"></i></div><p>TE ${money(r.te*consumption)} · TUSD ${money(r.tusd*consumption)}</p></div>`).join('')+`<p class="calc-delta">${Math.abs(a.rate-b.rate)<.000001?'As duas tarifas resultam no mesmo valor.':`Em A, você pagaria <b>${money(Math.abs(a.rate-b.rate)*consumption)} ${a.rate>b.rate?'a mais':'a menos'}</b> por mês neste recorte.`}</p>`;
+  $('#calc-results').innerHTML=[a,b].map(r=>`<div class="calc-result"><div><span>${esc(r.name)}</span><strong>${money(r.rate*consumption)}</strong></div><div class="calc-stack" aria-hidden="true"><i style="width:${r.te/r.rate*100}%"></i><i style="width:${r.tusd/r.rate*100}%"></i></div><p class="component-labels"><span><i class="swatch te"></i> TE <b>${fmt(r.te/r.rate*100,1)}%</b> · ${money(r.te*consumption)}</span><span><i class="swatch tusd"></i> TUSD <b>${fmt(r.tusd/r.rate*100,1)}%</b> · ${money(r.tusd*consumption)}</span></p></div>`).join('')+`<p class="calc-delta">${Math.abs(a.rate-b.rate)<.000001?'As duas tarifas resultam no mesmo valor.':`Em A, você pagaria <b>${money(Math.abs(a.rate-b.rate)*consumption)} ${a.rate>b.rate?'a mais':'a menos'}</b> por mês neste recorte.`}</p>`;
  }
  ['#calc-a','#calc-b'].forEach(id=>$(id).addEventListener('change',calc));$('#consumption').addEventListener('input',calc);
  const stateList=Object.values(states).sort((a,b)=>a[1].localeCompare(b[1],'pt-BR'));

@@ -91,5 +91,12 @@
     "No verified Reclame Aqui ratings",
     "Official files may be revised; hashes identify original retrieval",
     "SIGA does not include all MMGD; capacity is not annual generation"
-  ]
+  ],
+  "edition": 3,
+  "legislation": {
+    "consulted": "2026-09-12",
+    "snapshot": "legislativo-fontes.json",
+    "scope": "Five selected proposals, not an exhaustive inventory; no automatic monitoring",
+    "status_caveat": "PL 5835/2023: official web page and API differ about rapporteur status; both locate it in CME."
+  }
 }
