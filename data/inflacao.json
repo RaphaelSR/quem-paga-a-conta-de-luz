@@ -1,0 +1,125 @@
+{
+  "consulted": "2026-09-12",
+  "source": "IBGE SIDRA",
+  "table": 7060,
+  "variable": 2265,
+  "unit": "%",
+  "scope": "Brasil",
+  "periods": [
+    {
+      "url": "https://apisidra.ibge.gov.br/values/t/7060/n1/all/v/2265/p/202512/c315/all",
+      "header": {
+        "NC": "Nível Territorial (Código)",
+        "NN": "Nível Territorial",
+        "MC": "Unidade de Medida (Código)",
+        "MN": "Unidade de Medida",
+        "V": "Valor",
+        "D1C": "Brasil (Código)",
+        "D1N": "Brasil",
+        "D2C": "Variável (Código)",
+        "D2N": "Variável",
+        "D3C": "Mês (Código)",
+        "D3N": "Mês",
+        "D4C": "Geral, grupo, subgrupo, item e subitem (Código)",
+        "D4N": "Geral, grupo, subgrupo, item e subitem"
+      },
+      "records": [
+        {
+          "NC": "1",
+          "NN": "Brasil",
+          "MC": "2",
+          "MN": "%",
+          "V": "4.26",
+          "D1C": "1",
+          "D1N": "Brasil",
+          "D2C": "2265",
+          "D2N": "IPCA - Variação acumulada em 12 meses",
+          "D3C": "202512",
+          "D3N": "dezembro 2025",
+          "D4C": "7169",
+          "D4N": "Índice geral"
+        },
+        {
+          "NC": "1",
+          "NN": "Brasil",
+          "MC": "2",
+          "MN": "%",
+          "V": "12.31",
+          "D1C": "1",
+          "D1N": "Brasil",
+          "D2C": "2265",
+          "D2N": "IPCA - Variação acumulada em 12 meses",
+          "D3C": "202512",
+          "D3N": "dezembro 2025",
+          "D4C": "7484",
+          "D4N": "2202.Energia elétrica residencial"
+        },
+        {
+          "NC": "1",
+          "NN": "Brasil",
+          "MC": "2",
+          "MN": "%",
+          "V": "12.31",
+          "D1C": "1",
+          "D1N": "Brasil",
+          "D2C": "2265",
+          "D2N": "IPCA - Variação acumulada em 12 meses",
+          "D3C": "202512",
+          "D3N": "dezembro 2025",
+          "D4C": "7485",
+          "D4N": "2202003.Energia elétrica residencial"
+        }
+      ]
+    },
+    {
+      "url": "https://apisidra.ibge.gov.br/values/t/7060/n1/all/v/2265/p/202608/c315/7169,7485",
+      "header": {
+        "NC": "Nível Territorial (Código)",
+        "NN": "Nível Territorial",
+        "MC": "Unidade de Medida (Código)",
+        "MN": "Unidade de Medida",
+        "V": "Valor",
+        "D1C": "Brasil (Código)",
+        "D1N": "Brasil",
+        "D2C": "Variável (Código)",
+        "D2N": "Variável",
+        "D3C": "Mês (Código)",
+        "D3N": "Mês",
+        "D4C": "Geral, grupo, subgrupo, item e subitem (Código)",
+        "D4N": "Geral, grupo, subgrupo, item e subitem"
+      },
+      "records": [
+        {
+          "NC": "1",
+          "NN": "Brasil",
+          "MC": "2",
+          "MN": "%",
+          "V": "4.22",
+          "D1C": "1",
+          "D1N": "Brasil",
+          "D2C": "2265",
+          "D2N": "IPCA - Variação acumulada em 12 meses",
+          "D3C": "202608",
+          "D3N": "agosto 2026",
+          "D4C": "7169",
+          "D4N": "Índice geral"
+        },
+        {
+          "NC": "1",
+          "NN": "Brasil",
+          "MC": "2",
+          "MN": "%",
+          "V": "4.95",
+          "D1C": "1",
+          "D1N": "Brasil",
+          "D2C": "2265",
+          "D2N": "IPCA - Variação acumulada em 12 meses",
+          "D3C": "202608",
+          "D3N": "agosto 2026",
+          "D4C": "7485",
+          "D4N": "2202003.Energia elétrica residencial"
+        }
+      ]
+    }
+  ]
+}

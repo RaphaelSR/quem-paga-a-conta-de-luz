@@ -92,11 +92,27 @@
     "Official files may be revised; hashes identify original retrieval",
     "SIGA does not include all MMGD; capacity is not annual generation"
   ],
-  "edition": 3,
+  "edition": 4,
   "legislation": {
     "consulted": "2026-09-12",
     "snapshot": "legislativo-fontes.json",
     "scope": "Five selected proposals, not an exhaustive inventory; no automatic monitoring",
     "status_caveat": "PL 5835/2023: official web page and API differ about rapporteur status; both locate it in CME."
+  },
+  "inflation": {
+    "snapshot": "inflacao.json",
+    "source": "https://sidra.ibge.gov.br/tabela/7060",
+    "consulted": "2026-09-12",
+    "variable": 2265,
+    "periods": [
+      "202512",
+      "202608"
+    ],
+    "categories": [
+      "7169",
+      "7485"
+    ],
+    "scope": "Brasil",
+    "note": "12-month changes; overlapping periods; not distributor tariff adjustments"
   }
 }

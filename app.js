@@ -50,11 +50,16 @@ async function boot(){
  const rateOptions=[...rates].sort((a,b)=>a.name.localeCompare(b.name,'pt-BR')).map(r=>`<option value="${esc(r.name)}">${esc(r.name)}</option>`).join('');
  $('#calc-a').innerHTML=$('#calc-b').innerHTML=rateOptions;$('#calc-a').value='EQUATORIAL PA';$('#calc-b').value='COPEL-DIS';
  function calc(){
-  const consumption=Number($('#consumption').value),a=rates.find(r=>r.name===$('#calc-a').value),b=rates.find(r=>r.name===$('#calc-b').value);
+  const valid=$('#consumption-number').validity.valid;
+  $('#consumption-number').setAttribute('aria-invalid',String(!valid));
+  $('#consumption-error').hidden=valid;$('#calc-results').hidden=!valid;
+  if(!valid)return;
+  $('#consumption').value=$('#consumption-number').value;
+  const consumption=Number($('#consumption-number').value),a=rates.find(r=>r.name===$('#calc-a').value),b=rates.find(r=>r.name===$('#calc-b').value);
   $('#consumption-value').textContent=`${fmt(consumption)} kWh`;
-  $('#calc-results').innerHTML=[a,b].map(r=>`<div class="calc-result"><div><span>${esc(r.name)}</span><strong>${money(r.rate*consumption)}</strong></div><div class="calc-stack" aria-hidden="true"><i style="width:${r.te/r.rate*100}%"></i><i style="width:${r.tusd/r.rate*100}%"></i></div><p class="component-labels"><span><i class="swatch te"></i> TE <b>${fmt(r.te/r.rate*100,1)}%</b> · ${money(r.te*consumption)}</span><span><i class="swatch tusd"></i> TUSD <b>${fmt(r.tusd/r.rate*100,1)}%</b> · ${money(r.tusd*consumption)}</span></p></div>`).join('')+`<p class="calc-delta">${Math.abs(a.rate-b.rate)<.000001?'As duas tarifas resultam no mesmo valor.':`Em A, você pagaria <b>${money(Math.abs(a.rate-b.rate)*consumption)} ${a.rate>b.rate?'a mais':'a menos'}</b> por mês neste recorte.`}</p>`;
+  $('#calc-results').innerHTML=[a,b].map(r=>`<div class="calc-result"><div><span>${esc(r.name)}</span><strong>${money(r.rate*consumption)}</strong></div><div class="calc-stack" aria-hidden="true"><i style="width:${r.te/r.rate*100}%"></i><i style="width:${r.tusd/r.rate*100}%"></i></div><p class="component-labels"><span><i class="swatch te"></i> TE <b>${fmt(r.te/r.rate*100,1)}%</b> · ${money(r.te*consumption)}</span><span><i class="swatch tusd"></i> TUSD <b>${fmt(r.tusd/r.rate*100,1)}%</b> · ${money(r.tusd*consumption)}</span></p></div>`).join('')+`<p class="calc-delta">${Math.abs(a.rate-b.rate)<.000001?'As duas tarifas resultam no mesmo valor.':`Em A, você pagaria <b>${money(Math.abs(a.rate-b.rate)*consumption)} ${a.rate>b.rate?'a mais':'a menos'}</b> por mês neste recorte. Mantendo consumo e tarifas por 12 meses, a diferença seria de <b>${money(Math.abs(a.rate-b.rate)*consumption*12)}</b> no ano — uma projeção constante, não previsão de reajustes.`}</p>`;
  }
- ['#calc-a','#calc-b'].forEach(id=>$(id).addEventListener('change',calc));$('#consumption').addEventListener('input',calc);
+ ['#calc-a','#calc-b'].forEach(id=>$(id).addEventListener('change',calc));$('#consumption').addEventListener('input',()=>{$('#consumption-number').value=$('#consumption').value;calc();});$('#consumption-number').addEventListener('input',calc);
  const stateList=Object.values(states).sort((a,b)=>a[1].localeCompare(b[1],'pt-BR'));
  $('#state').innerHTML='<option value="">Brasil inteiro</option>'+stateList.map(([uf,name])=>`<option value="${uf}">${name} (${uf})</option>`).join('');
  let selectedPlant=null;
