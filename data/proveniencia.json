@@ -1,0 +1,95 @@
+{
+  "editorial_updated": "2026-09-12",
+  "as_of": "2026-09-12",
+  "sources": [
+    {
+      "file": "tarifas.csv",
+      "url": "https://dadosabertos.aneel.gov.br/dataset/5a583f3e-1646-4f67-bf0f-69db4203e89e/resource/fcf2906c-7c32-4b9b-a637-054e7a5234f4/download/tarifas-homologadas-distribuidoras-energia-eletrica.csv",
+      "reference_date": "2026-09-12",
+      "retrieved": "2026-09-12",
+      "sha256": "25adfbd6eac1277a6385aeea0697266c73c50fea816101710068d95a622b1084",
+      "bytes": 89013868
+    },
+    {
+      "file": "siga.csv",
+      "url": "https://dadosabertos.aneel.gov.br/dataset/6d90b77c-c5f5-4d81-bdec-7bc619494bb9/resource/11ec447d-698d-4ab8-977f-b424d5deee6a/download/siga-empreendimentos-geracao.csv",
+      "reference_date": "2026-09-01",
+      "retrieved": "2026-09-12",
+      "sha256": "b52f42ff7a25dadfb8f5edcf183b6f63a5518ac1c776fcead557de1913172dda",
+      "bytes": 8448569
+    },
+    {
+      "file": "estados.json",
+      "url": "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&qualidade=minima&intrarregiao=UF",
+      "reference_date": null,
+      "retrieved": "2026-09-12",
+      "sha256": "07c671aa87aa1ab296c446de6294df9827112782537b996c0a160284907e7c0f",
+      "bytes": 98502
+    },
+    {
+      "file": "continuidade.html",
+      "url": "https://www.gov.br/aneel/pt-br/centrais-de-conteudos/relatorios-e-indicadores/distribuicao/ranking-de-continuidade/2025",
+      "reference_date": "2025",
+      "retrieved": "2026-09-12",
+      "sha256": "2738e80a00c3dc9564d9dd6cc21f4340c389704252f0bccb256076cd5b28ac77",
+      "bytes": 225429
+    }
+  ],
+  "filters": {
+    "tariffs": {
+      "DscBaseTarifaria": "Tarifa de Aplicação",
+      "DscSubGrupo": "B1",
+      "DscModalidadeTarifaria": "Convencional",
+      "DscClasse": "Residencial",
+      "DscSubClasse": "Residencial",
+      "DscDetalhe": "Não se aplica",
+      "DscUnidadeTerciaria": "MWh",
+      "vigencia": "inicio <= as_of <= fim",
+      "deduplication": "latest DatInicioVigencia per CNPJ; 5 overlaps",
+      "exclusion": "1 unnamed agent",
+      "formula": "(VlrTE + VlrTUSD) / 1000"
+    },
+    "siga": {
+      "phase": "Operação",
+      "capacity": "MdaPotenciaFiscalizadaKw > 0, divided by 1000",
+      "aggregation": "SigUFPrincipal, all technologies; not actual annual generation",
+      "map": "UHE, PCH, CGH; -34 < latitude < 6 and -74 < longitude < -34; 16 coordinate exclusions",
+      "deduplication": "3 duplicate CEGs differ only in outorga; counted once after asserting capacity, technology, UF and coordinates match"
+    }
+  },
+  "licenses": {
+    "siga": "ODbL — https://opendatacommons.org/licenses/odbl/1-0/",
+    "geography": "Attribution: IBGE",
+    "other_sources": "Attribution: ANEEL, EPE; consult original source for terms"
+  },
+  "generation": {
+    "source": "https://www.epe.gov.br/sites-pt/publicacoes-dados-abertos/publicacoes/PublicacoesArquivos/publicacao-975/topico-847/BEN_S%C3%ADntese_2026_PT.pdf",
+    "pages": [
+      35,
+      41
+    ],
+    "reference_year": 2025,
+    "unit_original": "GWh",
+    "hydro": [
+      421799,
+      401415
+    ],
+    "wind": [
+      107654,
+      116488
+    ],
+    "solar": [
+      70665,
+      88141
+    ],
+    "renewable_share_oiee": 86.8
+  },
+  "limitations": [
+    "Not a weighted state tariff ranking",
+    "No causal inference from tariff / generation correlation",
+    "No current ownership inventory",
+    "No verified Reclame Aqui ratings",
+    "Official files may be revised; hashes identify original retrieval",
+    "SIGA does not include all MMGD; capacity is not annual generation"
+  ]
+}
